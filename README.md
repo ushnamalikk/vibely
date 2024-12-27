@@ -6,11 +6,11 @@ Vibely is a context-aware music retrieval project that uses user-generated comme
 
 ## Features
 - **Context-Aware Retrieval**:
-  - Uses YouTube comments and metadata to capture emotional and contextual descriptions of songs.
+  Uses YouTube comments and metadata to capture emotional and contextual descriptions of songs.
 - **Efficient Filtering**:
-  - Integrates FAISS (Facebook AI Similarity Search) to filter irrelevant data and improve search efficiency.
+  Integrates FAISS (Facebook AI Similarity Search) to filter irrelevant data and improve search efficiency.
 - **Rich Metadata**:
-  - Provides detailed song information including title, artist, album, duration, and view count.
+  Provides detailed song information including title, artist, album, duration, and view count.
 
 ---
 
