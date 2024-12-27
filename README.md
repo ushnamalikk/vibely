@@ -1,67 +1,78 @@
-# Vibely
+# Vibely: Context-Aware Music Retrieval
 
-Vibely is a context-aware music retrieval model that recommends songs based on descriptive "vibes" instead of traditional genre or artist tags. This repository includes the implementation, data files, and supporting materials for training and deploying the model.
+Vibely is a context-aware music retrieval project that uses user-generated comments and song metadata to recommend tracks based on descriptive "vibes" rather than traditional genre or artist tags. This repository includes the core implementation, data files, and supporting materials.
 
 ---
 
 ## Features
 - **Context-Aware Retrieval**:
-  - Trained on user-generated comments scraped from YouTube, allowing recommendations based on mood, emotions, or specific contextual keywords.
-
-- **Integration with FAISS**:
-  - Uses FAISS (Facebook AI Similarity Search) for efficient filtering and indexing of relevant comments, ensuring a high-quality training dataset.
-
+  - Uses YouTube comments and metadata to capture emotional and contextual descriptions of songs.
+- **Efficient Filtering**:
+  - Integrates FAISS (Facebook AI Similarity Search) to filter irrelevant data and improve search efficiency.
 - **Rich Metadata**:
-  - Leverages song metadata and listener feedback to improve the precision and context of recommendations.
+  - Provides detailed song information including title, artist, album, duration, and view count.
 
 ---
 
 ## Files
 
-### 1. `songs_metadata.json`
-- **Description**: Contains metadata for each song, including:
-  - **Title**: The name of the song.
-  - **Artist**: The performer(s) of the song.
-  - **Album Name**: The album or collection the song is part of.
-  - **View Count**: Number of times the song has been played.
-  - **Duration**: The length of the song.
-  - **URL**: Link to access the song (e.g., YouTube link).
+### 1. `ArtistList.txt`
+- **Description**: Contains a list of artists featured in the music database.
+- **Purpose**: Provides a reference for artist-based filtering and querying.
 
-### 2. `comments_dict.json`
-- **Description**: Contains user-generated comments for each song. Each entry corresponds to a particular song and includes YouTube comments, providing:
-  - Listener reactions, thoughts, and emotional responses.
-  - Context for training the model to identify song "vibes."
+### 2. `ArtistStatus.json`
+- **Description**: Tracks the active/inactive status of the listed artists.
+- **Purpose**: Helps determine the availability of songs by specific artists.
+
+### 3. `comments.json`
+- **Description**: Includes user-generated comments for various songs, capturing listener reactions and emotional responses.
+- **Purpose**: Used as training data for understanding song "vibes."
+
+### 4. `SongCollection.json`
+- **Description**: Stores user feedback on songs, including individual comment threads.
+- **Purpose**: Provides additional insights for analyzing audience engagement.
+
+### 5. `SongInfo.json`
+- **Description**: Contains detailed metadata for each song, including:
+  - **Title**
+  - **Artist**
+  - **Album Name**
+  - **View Count**
+  - **Duration**
+  - **YouTube URL**
+- **Purpose**: Serves as the primary dataset for song metadata.
+
+---
+
+## Code Files
+
+### 1. `Collector.py`
+- **Description**: Handles data collection, including scraping and processing YouTube comments and metadata.
+- **Purpose**: Automates the data acquisition process.
+
+### 2. `Comment.py`
+- **Description**: Processes and structures comments for training and analysis.
+- **Purpose**: Ensures the comments are cleaned and ready for integration into the model.
+
+### 3. `Scraper.py`
+- **Description**: Custom scraper for retrieving YouTube metadata and comments.
+- **Purpose**: Fetches additional details not included in the original dataset.
 
 ---
 
 ## Usage
 
-1. **Preprocessing the Data**:
-   - Process and clean the metadata and comments to prepare the training dataset:
-     ```bash
-     python src/preprocess.py --metadata_file data/songs_metadata.json --comments_file data/comments_dict.json
-     ```
+1. **Data Preparation**:
+   - Use `Collector.py` and `Scraper.py` to fetch and preprocess data.
 
-2. **Training the Model**:
-   - Train the music retrieval model using the cleaned dataset:
-     ```bash
-     python src/train.py
-     ```
+2. **Analysis**:
+   - Analyze user comments and song metadata using `Comment.py`.
 
-3. **Using the Retrieval System**:
-   - Query the system for recommendations based on descriptive keywords:
-     ```bash
-     python src/search.py --query "uplifting summer vibes"
-     ```
-
----
-
-## Future Work
-- **Enhanced Data Sources**: Include user comments from other platforms to diversify the dataset.
-- **Advanced Embeddings**: Experiment with more sophisticated embedding models to capture nuanced song descriptions.
-- **Web Deployment**: Deploy the system as an interactive web application for real-world usage.
+3. **Integration**:
+   - Use the processed data for model training and retrieval system development.
 
 ---
 
 ## Contact
-For questions, contributions, or collaborations, feel free to open an issue in the repository or reach out directly.
+For questions or collaboration, please open an issue in the repository or reach out directly.
+
